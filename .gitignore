@@ -1,2 +1,2 @@
 lua/.luarc.json
-plugin/
+./plugin

@@ -57,7 +57,6 @@ return require("lazy").setup({
     },
 
     -- Git integration
-    "tpope/vim-fugitive",
     "airblade/vim-gitgutter",
 
     "windwp/nvim-autopairs",

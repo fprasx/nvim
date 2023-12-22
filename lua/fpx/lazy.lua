@@ -39,8 +39,7 @@ return require('lazy').setup({
     -- Fuzzy finding
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
+        tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
@@ -48,11 +47,14 @@ return require('lazy').setup({
     'simrat39/rust-tools.nvim',
 
     -- Syntax highlighting
-    {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     'nvim-treesitter/playground',
 
     -- Movement
-    'theprimeagen/harpoon',
+    {
+        'theprimeagen/harpoon',
+        branch = "harpoon2"
+    },
 
     -- Git integration
     'tpope/vim-fugitive',

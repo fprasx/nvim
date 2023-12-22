@@ -2,11 +2,6 @@ local lsp = require("lsp-zero")
 
 lsp.preset({})
 
-lsp.ensure_installed({
-    'rust_analyzer',
-    'lua_ls',
-})
-
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
     settings = {

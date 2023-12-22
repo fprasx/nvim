@@ -12,9 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
-    -- Packer can manage itself
-    "wbthomason/packer.nvim",
-
     -- LSP support
     {
         "VonHeikemen/lsp-zero.nvim",

@@ -30,9 +30,17 @@ vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
 vim.keymap.set("n", "<leader>P", [["+p]])
 
 -- substitute-global
-vim.keymap.set("n", "<leader>sg", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set(
+    "n",
+    "<leader>sg",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
 -- substitute-line
-vim.keymap.set("n", "<leader>sl", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set(
+    "n",
+    "<leader>sl",
+    [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
 
 -- Window movement
 vim.keymap.set("n", "<leader>wj", "<C-w>j")
@@ -42,4 +50,4 @@ vim.keymap.set("n", "<leader>wl", "<C-w>l")
 
 -- Trigger writes from insert mode so rust-analyzer refreshes
 -- vim.keymap.set("i", "<C-r>", function() vim.api.nvim_command("write") end);
-vim.keymap.set("i", "<C-r>", "<Esc>:w<Enter>");
+vim.keymap.set("i", "<C-r>", "<Esc>:w<Enter>")

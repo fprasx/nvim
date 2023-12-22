@@ -11,60 +11,60 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-return require('lazy').setup({
+return require("lazy").setup({
     -- Packer can manage itself
-    'wbthomason/packer.nvim',
+    "wbthomason/packer.nvim",
 
     -- LSP support
     {
-        'VonHeikemen/lsp-zero.nvim',
+        "VonHeikemen/lsp-zero.nvim",
         dependencies = {
             -- LSP Support
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'neovim/nvim-lspconfig' },
+            { "williamboman/mason.nvim" },
+            { "williamboman/mason-lspconfig.nvim" },
+            { "neovim/nvim-lspconfig" },
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
+            { "hrsh7th/nvim-cmp" },
+            { "hrsh7th/cmp-path" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
 
             -- Snippets (for some reason needed for autocomplete)
-            { 'L3MON4D3/LuaSnip' }
-        }
+            { "L3MON4D3/LuaSnip" },
+        },
     },
 
     -- Fuzzy finding
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.5',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.5",
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
 
     -- Rust <3
-    'simrat39/rust-tools.nvim',
+    "simrat39/rust-tools.nvim",
 
     -- Syntax highlighting
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-    'nvim-treesitter/playground',
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    "nvim-treesitter/playground",
 
     -- Movement
     {
-        'theprimeagen/harpoon',
-        branch = "harpoon2"
+        "theprimeagen/harpoon",
+        branch = "harpoon2",
     },
 
     -- Git integration
-    'tpope/vim-fugitive',
-    'airblade/vim-gitgutter',
+    "tpope/vim-fugitive",
+    "airblade/vim-gitgutter",
 
     "windwp/nvim-autopairs",
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
 
     -- Colorschemes
-    'shaunsingh/nord.nvim',
-    'folke/tokyonight.nvim',
-    'navarasu/onedark.nvim',
+    "shaunsingh/nord.nvim",
+    "folke/tokyonight.nvim",
+    "navarasu/onedark.nvim",
 })

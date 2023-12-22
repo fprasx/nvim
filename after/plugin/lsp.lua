@@ -3,24 +3,24 @@ local lsp = require("lsp-zero")
 lsp.preset({})
 
 -- Fix Undefined global 'vim'
-lsp.configure('lua_ls', {
+lsp.configure("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+                globals = { "vim" },
+            },
+        },
+    },
 })
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
+        error = "E",
+        warn = "W",
+        hint = "H",
+        info = "I",
+    },
 })
 
 -- The base lsp keymaps we want. In a function so we can use it for normal lsp
@@ -59,25 +59,35 @@ rt.setup({
         on_attach = function(client, bufnr)
             base_lsp_maps(client, bufnr)
             -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            vim.keymap.set(
+                "n",
+                "<C-space>",
+                rt.hover_actions.hover_actions,
+                { buffer = bufnr }
+            )
             -- rust-actions
-            vim.keymap.set("n", "<leader>ra", rt.code_action_group.code_action_group, { buffer = bufnr })
+            vim.keymap.set(
+                "n",
+                "<leader>ra",
+                rt.code_action_group.code_action_group,
+                { buffer = bufnr }
+            )
         end,
         settings = {
             ["rust-analyzer"] = {
                 check = {
-                    command = "clippy"
+                    command = "clippy",
                 },
                 procMacro = {
-                    enable = true
+                    enable = true,
                 },
                 diagnostics = {
                     disabled = {
-                        "unresolved-proc-macro"
-                    }
-                }
-            }
-        }
+                        "unresolved-proc-macro",
+                    },
+                },
+            },
+        },
     },
 })
 
@@ -87,15 +97,15 @@ vim.diagnostic.config({
 
 -- Set this up after lsp-zero
 -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/autocomplete.md#introduction
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+local cmp = require("cmp")
+local cmp_action = require("lsp-zero").cmp_action()
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ['<Tab>'] = cmp_action.luasnip_supertab(),
-    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<Tab>"] = cmp_action.luasnip_supertab(),
+    ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 })
 
 cmp.setup({
@@ -107,7 +117,7 @@ cmp.setup({
     mapping = mappings,
     snippet = {
         expand = function(args)
-            require 'luasnip'.lsp_expand(args.body)
-        end
+            require("luasnip").lsp_expand(args.body)
+        end,
     },
 })

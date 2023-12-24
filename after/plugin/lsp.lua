@@ -1,3 +1,7 @@
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = { 'tsserver', 'rust_analyzer', 'lua_ls', 'hls' },
+})
 local lsp = require("lsp-zero")
 
 lsp.preset({})
@@ -12,6 +16,8 @@ lsp.configure("lua_ls", {
         },
     },
 })
+
+lsp.configure("hls", {})
 
 lsp.set_preferences({
     suggest_lsp_servers = false,

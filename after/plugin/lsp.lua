@@ -18,6 +18,7 @@ lsp.configure("lua_ls", {
 })
 
 lsp.configure("hls", {})
+lsp.configure("pylsp", {})
 
 lsp.set_preferences({
     suggest_lsp_servers = false,

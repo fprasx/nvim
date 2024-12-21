@@ -149,7 +149,7 @@ cmp.setup({
     mapping = mappings,
     snippet = {
         expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            vim.snippet.expand(args.body)
         end,
     },
 })

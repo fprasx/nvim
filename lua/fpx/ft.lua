@@ -4,3 +4,9 @@ vim.filetype.add({
         decaf = 'c'
     }
 })
+
+vim.filetype.add({
+    extension = {
+        v = "coq"
+    },
+})

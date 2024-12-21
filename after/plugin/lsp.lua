@@ -2,7 +2,6 @@ local lspconfig = require("lspconfig")
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "rust_analyzer", "lua_ls", "hls" },
     handlers = {
         function(server_name)
             -- rust_analyzer setup is handled by rustaceanvim

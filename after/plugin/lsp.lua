@@ -5,7 +5,10 @@ require("mason-lspconfig").setup({
     ensure_installed = { "rust_analyzer", "lua_ls", "hls" },
     handlers = {
         function(server_name)
-            lspconfig[server_name].setup({})
+            -- rust_analyzer setup is handled by rustaceanvim
+            if server_name ~= "rust_analyzer" then
+                lspconfig[server_name].setup({})
+            end
         end,
 
         lua_ls = function()
@@ -78,35 +81,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, opts)
         vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
     end,
-})
-
--- Do this after main lsp setup
-local rt = require("rust-tools")
-rt.setup({
-    server = {
-        on_attach = function(client, bufnr)
-            base_lsp_maps(client, bufnr)
-            -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- rust-actions
-            vim.keymap.set("n", "<leader>ra", rt.code_action_group.code_action_group, { buffer = bufnr })
-        end,
-        settings = {
-            ["rust-analyzer"] = {
-                check = {
-                    command = "clippy",
-                },
-                procMacro = {
-                    enable = true,
-                },
-                diagnostics = {
-                    disabled = {
-                        "unresolved-proc-macro",
-                    },
-                },
-            },
-        },
-    },
 })
 
 vim.diagnostic.config({

@@ -31,7 +31,11 @@ return require("lazy").setup({
     },
 
     -- Rust <3
-    "simrat39/rust-tools.nvim",
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^5', -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
 
     -- Coq
     "whonore/Coqtail",

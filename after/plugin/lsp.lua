@@ -11,18 +11,18 @@ require("mason-lspconfig").setup({
                 settings = {
                     Lua = {
                         runtime = {
-                            version = 'LuaJIT'
+                            version = "LuaJIT",
                         },
                         diagnostics = {
-                            globals = { 'vim' },
+                            globals = { "vim" },
                         },
                         workspace = {
                             library = {
                                 vim.env.VIMRUNTIME,
-                            }
-                        }
-                    }
-                }
+                            },
+                        },
+                    },
+                },
             })
         end,
 

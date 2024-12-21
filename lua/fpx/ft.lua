@@ -1,12 +1,12 @@
 vim.filetype.add({
     extension = {
-        dcf = 'c',
-        decaf = 'c'
-    }
+        dcf = "c",
+        decaf = "c",
+    },
 })
 
 vim.filetype.add({
     extension = {
-        v = "coq"
+        v = "coq",
     },
 })

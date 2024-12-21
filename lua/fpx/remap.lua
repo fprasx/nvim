@@ -33,17 +33,9 @@ vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
 vim.keymap.set("n", "<leader>P", [["+p]])
 
 -- substitute-global
-vim.keymap.set(
-    "n",
-    "<leader>sg",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
-)
+vim.keymap.set("n", "<leader>sg", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- substitute-line
-vim.keymap.set(
-    "n",
-    "<leader>sl",
-    [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
-)
+vim.keymap.set("n", "<leader>sl", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Window movement
 vim.keymap.set("n", "<leader>wj", "<C-w>j")

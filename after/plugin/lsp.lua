@@ -1,13 +1,15 @@
+local lspconfig = require("lspconfig")
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = { "rust_analyzer", "lua_ls", "hls" },
     handlers = {
         function(server_name)
-            require("lspconfig")[server_name].setup({})
+            lspconfig[server_name].setup({})
         end,
 
         lua_ls = function()
-            require("lspconfig").lua_ls.setup({
+            lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
                         runtime = {
@@ -27,7 +29,7 @@ require("mason-lspconfig").setup({
         end,
 
         hls = function()
-            require("lspconfig").hls.setup({
+            lspconfig.hls.setup({
                 settings = {
                     haskell = {
                         formattingProvider = "fourmolu",
@@ -37,7 +39,7 @@ require("mason-lspconfig").setup({
         end,
 
         pylsp = function()
-            require("lspconfig").pylsp.setup({
+            lspconfig.pylsp.setup({
                 settings = {
                     pylsp = {
                         plugins = {

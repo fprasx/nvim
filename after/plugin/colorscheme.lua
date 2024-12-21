@@ -28,5 +28,12 @@ function OneDark(style)
     require("onedark").load()
 end
 
--- The default colorscheme to apply
-OneDark()
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function(_)
+        if vim.bo.ft == "coq" then
+            Nord()
+        else
+            OneDark()
+        end
+    end,
+})

@@ -1,4 +1,3 @@
-Nord()
 -- Reenable highlighting from Coqtail
 vim.cmd([[hi def CoqtailChecked guibg=#113311]])
 

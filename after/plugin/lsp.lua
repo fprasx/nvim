@@ -143,7 +143,6 @@ local mappings = lsp.defaults.cmp_mappings({
 cmp.setup({
     sources = {
         { name = "path" },
-        { name = "luasnip" },
         { name = "nvim_lsp" },
     },
     mapping = mappings,

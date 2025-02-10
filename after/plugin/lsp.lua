@@ -1,5 +1,7 @@
 local lspconfig = require("lspconfig")
 
+lspconfig['dafny'].setup({})
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
     handlers = {
@@ -94,6 +96,8 @@ cmp.setup({
         { name = "path" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
+        { name = "buffer" },
+        { name = "conjure" }
     },
     mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),

@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
             -- Reenable highlighting from Coqtail
             vim.cmd([[hi def CoqtailChecked guibg=#113311]])
         else
-            OneDark()
+            TokyoNight(false)
         end
     end,
 })

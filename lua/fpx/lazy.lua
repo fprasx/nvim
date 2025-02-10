@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local lisp_fts = { 'clojure', 'fennel', 'racket', 'scheme', 'lisp' }
+
 return require("lazy").setup({
     -- LSP support
     { "williamboman/mason.nvim" },
@@ -22,6 +24,7 @@ return require("lazy").setup({
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-nvim-lua" },
+    { "hrsh7th/cmp-buffer" },
 
     -- Fuzzy finding
     {
@@ -34,7 +37,7 @@ return require("lazy").setup({
     {
         "mrcjkb/rustaceanvim",
         version = "^5", -- Recommended
-        lazy = false, -- This plugin is already lazy
+        lazy = false,   -- This plugin is already lazy
     },
 
     -- Coq
@@ -59,4 +62,23 @@ return require("lazy").setup({
     "gbprod/nord.nvim",
     "folke/tokyonight.nvim",
     "navarasu/onedark.nvim",
+
+    -- lispschemes
+    -- all of these should only load for lisp filetypes so that loading one doesn't
+    -- load any of the others. For example, even if Conjure is disaled for Rust,
+    -- cmp-conjure or parinfer-rust might load it in the background if it's not
+    -- disabled.
+    {
+        "Olical/conjure",
+        ft = lisp_fts,
+    },
+    {
+        "PaterJason/cmp-conjure",
+        ft = lisp_fts,
+    },
+    {
+        "eraserhd/parinfer-rust",
+        build = "cargo build --release",
+        ft = lisp_fts,
+    },
 })

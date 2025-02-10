@@ -1,6 +1,11 @@
 -- Reenable highlighting from Coqtail
 vim.cmd([[hi def CoqtailChecked guibg=#113311]])
 
+-- coq-check
+vim.api.nvim_set_keymap('n', 'K', ":Coq Check <C-R>=expand('<cword>')<CR><CR>", { noremap = true, silent = true })
+-- coq-got-def
+vim.api.nvim_set_keymap('n', 'gd', ":CoqGotoDef <C-R>=expand('<cword>')<CR><CR>", { noremap = true, silent = true })
+
 -- coq-to-line
 vim.keymap.set("n", "<C-k>l", function()
     vim.cmd([[CoqToLine]])

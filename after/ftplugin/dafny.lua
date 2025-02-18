@@ -5,3 +5,5 @@ vim.api.nvim_create_autocmd("BufEnter", {
         end
     end,
 })
+vim.opt.shiftwidth = 2
+vim.bo.commentstring =  "// %s"

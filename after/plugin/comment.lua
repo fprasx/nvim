@@ -5,9 +5,4 @@ require("Comment").setup({
     opleader = {
         line = "<leader>/",
     },
-    pre_hook = function ()
-        if vim.bo.ft == "dafny" then
-            return "//"
-        end
-    end
 })

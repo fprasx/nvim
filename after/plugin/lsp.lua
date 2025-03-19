@@ -1,17 +1,8 @@
 local lspconfig = require("lspconfig")
 
--- For some reason doesn't work when I stick it in the mason-lspconfig block
+-- Have to do this through native lspconfig as mason doesn't support dafny
 lspconfig.dafny.setup({
     on_attach = function(client, bufnr)
-        vim.diagnostic.config({
-            underline = false,
-        }, bufnr)
-        vim.cmd [[
-            highlight! DiagnosticUnderlineError guibg=NONE gui=NONE
-            highlight! DiagnosticUnderlineWarn  guibg=NONE gui=NONE
-            highlight! DiagnosticUnderlineInfo  guibg=NONE gui=NONE
-            highlight! DiagnosticUnderlineHint  guibg=NONE gui=NONE
-        ]]
     end
 })
 

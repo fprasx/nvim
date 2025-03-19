@@ -31,9 +31,9 @@ end
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function(_)
         if vim.bo.ft == "coq" then
-            Nord()
+            TokyoNight(true)
             -- Reenable highlighting from Coqtail
-            vim.cmd([[hi def CoqtailChecked guibg=#113311]])
+            vim.cmd([[hi def CoqtailChecked ctermbg=17 guibg=LightGreen]])
         else
             TokyoNight(false)
         end

@@ -7,7 +7,7 @@ vim.api.nvim_set_keymap('n', 'K', ":Coq Check <C-R>=expand('<cword>')<CR><CR>", 
 vim.api.nvim_set_keymap('n', 'gd', ":CoqGotoDef <C-R>=expand('<cword>')<CR><CR>", { noremap = true, silent = true })
 
 -- coq-to-line
-vim.keymap.set("n", "<C-k>l", function()
+vim.keymap.set("n", "<Leader>kl", function()
     vim.cmd([[CoqToLine]])
 end)
 -- coq-down

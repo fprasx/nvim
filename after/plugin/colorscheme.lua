@@ -28,14 +28,29 @@ function OneDark(style)
     require("onedark").load()
 end
 
+function Everforest(light)
+    require("everforest").setup({
+        background = "soft"
+    })
+    if light then
+        vim.o.background = "light"
+    else
+        vim.o.background = "dark"
+    end
+    require("everforest").load()
+end
+
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function(_)
         if vim.bo.ft == "coq" then
-            TokyoNight(true)
+            -- TokyoNight(true)
             -- Reenable highlighting from Coqtail
-            vim.cmd([[hi def CoqtailChecked ctermbg=17 guibg=LightGreen]])
+            Everforest(true)
+            vim.cmd([[hi def CoqtailChecked guibg=LightGreen]])
+        elseif vim.bo.ft == "dafny" then
+            OneDark()
         else
-            TokyoNight(false)
+            Everforest(false)
         end
     end,
 })

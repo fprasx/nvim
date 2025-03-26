@@ -62,6 +62,7 @@ return require("lazy").setup({
     "gbprod/nord.nvim",
     "folke/tokyonight.nvim",
     "navarasu/onedark.nvim",
+    "neanias/everforest-nvim",
 
     -- lispschemes
     -- all of these should only load for lisp filetypes so that loading one doesn't

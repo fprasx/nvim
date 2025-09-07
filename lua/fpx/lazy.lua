@@ -1,25 +1,27 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lisp_fts = { 'clojure', 'fennel', 'racket', 'scheme', 'lisp' }
 
 return require("lazy").setup({
     -- LSP support
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
+    { "mason-org/mason.nvim", opts = {} },
     { "neovim/nvim-lspconfig" },
 
-    -- Autocompletion
+    -- Autocompletion sources
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-nvim-lsp" },
@@ -52,9 +54,8 @@ return require("lazy").setup({
         branch = "harpoon2",
     },
 
-    -- Git integration
+    -- Quality of life
     "airblade/vim-gitgutter",
-
     "windwp/nvim-autopairs",
     "numToStr/Comment.nvim",
 
@@ -63,23 +64,4 @@ return require("lazy").setup({
     "folke/tokyonight.nvim",
     "navarasu/onedark.nvim",
     "neanias/everforest-nvim",
-
-    -- lispschemes
-    -- all of these should only load for lisp filetypes so that loading one doesn't
-    -- load any of the others. For example, even if Conjure is disaled for Rust,
-    -- cmp-conjure or parinfer-rust might load it in the background if it's not
-    -- disabled.
-    {
-        "Olical/conjure",
-        ft = lisp_fts,
-    },
-    {
-        "PaterJason/cmp-conjure",
-        ft = lisp_fts,
-    },
-    {
-        "eraserhd/parinfer-rust",
-        build = "cargo build --release",
-        ft = lisp_fts,
-    },
 })

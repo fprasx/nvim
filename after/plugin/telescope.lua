@@ -1,5 +1,5 @@
 local builtin = require("telescope.builtin")
--- local actions = require('telescope.actions')
+local actions = require('telescope.actions')
 
 -- search-files
 vim.keymap.set("n", "<leader>sf", builtin.find_files, {})
@@ -19,3 +19,19 @@ end)
 -- vim.keymap.set('n', '<leader>sp', function() actions.move_selection_previous(0) end)
 
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+
+
+require("telescope").setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      },
+      n = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      },
+    },
+  },
+}

@@ -43,14 +43,15 @@ end
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function(_)
         if vim.bo.ft == "coq" then
-            -- TokyoNight(true)
             -- Reenable highlighting from Coqtail
-            Everforest(true)
-            vim.cmd([[hi def CoqtailChecked guibg=LightGreen]])
+            -- Everforest(true)
+            -- vim.cmd([[hi def CoqtailChecked guibg=LightGreen]])
+            TokyoNight(false)
+            vim.cmd([[hi def CoqtailChecked guibg=DarkGreen]])
         elseif vim.bo.ft == "dafny" then
-            OneDark()
+            TokyoNight(false)
         else
-            Everforest(false)
+            TokyoNight(false)
         end
     end,
 })

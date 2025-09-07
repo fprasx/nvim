@@ -1,9 +1,10 @@
+-- Have to pass this as server capabilities to make completions via nvim-cmp
+-- work
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 
 -- The base lsp keymaps we want. In a function so we can use it for normal lsp
 -- setup and rust setup with rust-tools.nvim
-function on_attach(_client, bufnr)
+local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
     vim.keymap.set("n", "<leader>f", function()
         vim.lsp.buf.format({ async = true })
@@ -22,55 +23,50 @@ function on_attach(_client, bufnr)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end
 
-vim.lsp.config('lua_ls', {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-            },
-            diagnostics = {
-                globals = { "vim" },
-            },
-            workspace = {
-                library = {
-                    vim.env.VIMRUNTIME,
-                },
+-- This function should work for configuring most language servers
+local setup_language_server = function(server_name, settings)
+    vim.lsp.config(server_name, {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = settings
+    })
+    vim.lsp.enable(server_name)
+end
+
+setup_language_server('lua_ls', {
+    Lua = {
+        runtime = {
+            version = "LuaJIT",
+        },
+        diagnostics = {
+            globals = { "vim" },
+        },
+        workspace = {
+            library = {
+                vim.env.VIMRUNTIME,
             },
         },
     },
 })
-vim.lsp.enable('lua_ls')
 
 vim.lsp.config('hls', {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        haskell = {
-            formattingProvider = "fourmolu",
-        },
+    haskell = {
+        formattingProvider = "fourmolu",
     },
 })
-vim.lsp.enable('hls')
 
-vim.lsp.config('pylsp', {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        pylsp = {
-            plugins = {
-                ruff = {
-                    enabled = true,
-                    formatEnabled = true,
-                    format = { "I" },
-                    extendSelect = { "I" },
-                },
+setup_language_server('pylsp', {
+    pylsp = {
+        plugins = {
+            ruff = {
+                enabled = true,
+                formatEnabled = true,
+                format = { "I" },
+                extendSelect = { "I" },
             },
         },
     },
 })
-vim.lsp.enable('pylsp')
 
 -- Handle Rust separately
 vim.g.rustaceanvim = {

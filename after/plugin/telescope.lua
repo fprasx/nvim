@@ -20,7 +20,6 @@ end)
 
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 
-
 require("telescope").setup{
   defaults = {
     mappings = {
